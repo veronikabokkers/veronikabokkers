@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Vuurdover project 9</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="Vuurdover%20project%209_files/bootstrap.css">
+    <script src="Vuurdover%20project%209_files/jquery.js"></script>
+    <script src="Vuurdover%20project%209_files/bootstrap.js"></script>
 <style>
-    body {
+body {
+  background-size: 100%;
+  background-color: black;
+  background-attachment: fixed;
+  background-position: center; 
+}
+div {
+  background-color: rgba(0,0,0,1.0);
 } 
-#overlay {
+img {
   position: fixed;
   display: block;
   width: 100%;
@@ -19,20 +26,17 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,1.0);
+  opacity: 0.01;
   z-index: 2;
   cursor: pointer;
-  background: url(https://media.giphy.com/media/ZHXz9MZbJI1YA/giphy.gif) no-repeat;
-  background-size: 100%;
-  background-color: black;
-  background-attachment: fixed;
-  background-position: center; 
 }
 
     </style>
 </head>
 <body>
-    <div id="overlay"></div>
+<div>
+<img src="https://media.giphy.com/media/ZHXz9MZbJI1YA/giphy.gif" onclick="changeOpacity()" id="fire">
+</div>
 <!--
 <div id="videoContainer">
     <video autoplay="true" id="videoElement">
@@ -40,5 +44,16 @@
     </video>
 </div>
 -->
-</body>
-</html>
+
+<script>
+function changeOpacity() {
+  var image=document.getElementById("fire");
+  var oldOpacity = image.style.opacity;
+  var newOpacity = Math.random();
+  while (newOpacity>1) {
+    newOpacity -= 1;
+  }
+  image.style.opacity = newOpacity;
+}
+</script>
+</body></html>
