@@ -35,7 +35,8 @@ img {
 </head>
 <body>
 <div>
-<img src="https://media.giphy.com/media/ZHXz9MZbJI1YA/giphy.gif" onclick="changeOpacity()" id="fire">
+<!--img src="https://media.giphy.com/media/ZHXz9MZbJI1YA/giphy.gif" onclick="changeOpacity()" id="fire"-->
+    
 </div>
 <!--
 <div id="videoContainer">
@@ -55,5 +56,14 @@ function changeOpacity() {
   }
   image.style.opacity = newOpacity;
 }
+    
+var webSocket;
+    function init() {
+        webSocket = new WebSocket("ws://" + window.location.hostname + ":81");
+        webSocket.onmessage = function(event){
+            var data=event.data;
+            console.log(data);
+        }
+    }
 </script>
 </body></html>
