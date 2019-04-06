@@ -2,11 +2,6 @@
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Vuurdover project 10</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="Vuurdover%20project%209_files/bootstrap.css">
-    <script src="Vuurdover%20project%209_files/jquery.js"></script>
-    <script src="Vuurdover%20project%209_files/bootstrap.js"></script>
 <style>
 body {
   background-size: 100%;
@@ -33,9 +28,9 @@ img {
 
     </style>
 </head>
-<body>
+<body onload="javascript:init()">
 <div>
-<!--img src="https://media.giphy.com/media/ZHXz9MZbJI1YA/giphy.gif" onclick="changeOpacity()" id="fire"-->
+<img src="https://media.giphy.com/media/ZHXz9MZbJI1YA/giphy.gif" onclick="changeOpacity()" id="fire">
     
 </div>
 <!--
@@ -47,23 +42,25 @@ img {
 -->
 
 <script>
-function changeOpacity() {
-  var image=document.getElementById("fire");
-  var oldOpacity = image.style.opacity;
-  var newOpacity = Math.random();
-  while (newOpacity>1) {
-    newOpacity -= 1;
-  }
-  image.style.opacity = newOpacity;
-}
-    
 var webSocket;
     function init() {
-        webSocket = new WebSocket("ws://" + window.location.hostname + ":81");
+    console.log("Init entered");
+        webSocket = new WebSocket("ws://192.168.2.5:81/");
         webSocket.onmessage = function(event){
             var data=event.data;
             console.log(data);
+            changeOpacity(parseInt(data));
         }
     }
+function changeOpacity(newOpacity) {
+  var image=document.getElementById("fire");
+  if (newOpacity>13) {
+     image.style.opacity = 1.0;
+  } else {
+     image.style.opacity = 0.05;
+  }
+}
+    
 </script>
+
 </body></html>
