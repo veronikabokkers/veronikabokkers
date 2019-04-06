@@ -30,22 +30,17 @@ img {
 </head>
 <body onload="javascript:init()">
 <div>
-<img src="https://media.giphy.com/media/ZHXz9MZbJI1YA/giphy.gif" onclick="changeOpacity()" id="fire">
+<img src="https://i.gifer.com/MzX2.gif" id="fire">
     
 </div>
-<!--
-<div id="videoContainer">
-    <video autoplay="true" id="videoElement">
-
-    </video>
-</div>
--->
 
 <script>
 var webSocket;
     function init() {
     console.log("Init entered");
-        webSocket = new WebSocket("ws://192.168.2.5:81/");
+    const urlParams = new URLSearchParams(window.location.search);
+    const ip = urlParams.get('ip');
+        webSocket = new WebSocket("ws://" + ip + ":81/");
         webSocket.onmessage = function(event){
             var data=event.data;
             console.log(data);
