@@ -40,16 +40,21 @@ var webSocket;
     console.log("Init entered");
     const urlParams = new URLSearchParams(window.location.search);
     const ip = urlParams.get('ip');
+    
+    var grenswaarde = 13;
+    if(urlParams.has('grenswaarde')) {
+        grenswaarde = urlParams.get('grenswaarde');
+    }
         webSocket = new WebSocket("ws://" + ip + ":81/");
         webSocket.onmessage = function(event){
             var data=event.data;
             console.log(data);
-            changeOpacity(parseInt(data));
+            changeOpacity(parseInt(data),grenswaarde);
         }
     }
-function changeOpacity(newOpacity) {
+function changeOpacity(lightlevel,grenswaarde) {
   var image=document.getElementById("fire");
-  if (newOpacity>13) {
+  if (lightlevel>grenswaarde) {
      image.style.opacity = 1.0;
   } else {
      image.style.opacity = 0.05;
